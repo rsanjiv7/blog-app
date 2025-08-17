@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>My Blog</h1>
+      <p class="subtitle">Post your blog.</p>
+      <a href="/new" class="btn primary-btn">New Post</a>
+    </header>
+
+    <% if (posts.length === 0) { %>
+      <p class="empty-msg">No posts yet. Be the first to write one!</p>
+    <% } else { %>
+      <div class="posts-container">
+        <% posts.forEach(post => { %>
+          <div class="post-card">
+            <div class="post-content">
+              <h2><%= post.title %></h2>
+              <p><%= post.content %></p>
+            </div>
+            <div class="post-actions">
+              <form action="/delete/<%= post.id %>" method="POST">
+                <button type="submit" class="btn delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
